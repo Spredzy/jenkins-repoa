@@ -10,75 +10,50 @@ pipeline {
             }
         }
 
+        stage('Initial Setup') {
+            steps {
+                checkout(
+                    $class: 'GitSCM',
+                    url: 'https://github.com/Spredzy/jenkins-repoa'
+                )
+
+                sh './tools/jenkins/scripts/setup.sh'
+            }
+        }
+
         stage('Initial Install') {
             steps {
-                script {
-                    stage('Initial Install') {
-                        standalone_install_build = build(
-                            job: 'QE/library/installtotot'
-                        )
-                    }
-                }
+                sh './tools/jenkins/scripts/install.sh'
             }
         }
 
         stage('Load data') {
             steps {
-                script {
-                    stage('Load data') {
-                        build(
-                            job: 'QE/library/load'
-                        )
-                    }
-                }
+                sh './tools/jenkins/scripts/load.sh'
             }
         }
 
         stage('Backup Instance') {
             steps {
-                script {
-                    stage('Backup Instance') {
-                        build(
-                            job: 'QE/library/backup'
-                        )
-                    }
-                }
+                sh './tools/jenkins/scripts/backup.sh'
             }
         }
 
         stage('Wipe and Reinstall Tower') {
             steps {
-                script {
-                    stage('Wipe and Reinstall Tower') {
-                        build(
-                            job: 'QE/library/instaltotot'
-                        )
-                    }
-                }
+                sh './tools/jenkins/scripts/install.sh'
             }
         }
 
         stage('Restore backup') {
             steps {
-                script {
-                    stage('Restore backup') {
-                        build(
-                            job: 'QE/library/restore'
-                        )
-                    }
-                }
+                sh './tools/jenkins/scripts/restore.sh'
             }
         }
 
         stage('Verify data integrity') {
             steps {
-                script {
-                    stage('Verify data integrity') {
-                        build(
-                            job: 'QE/library/verify'
-                        )
-                    }
-                }
+                sh './tools/jenkins/scripts/verify.sh'
             }
         }
     }
