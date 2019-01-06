@@ -4,4 +4,5 @@ set -euxo pipefail
 
 echo "install"
 date > toto.date
+env
 
