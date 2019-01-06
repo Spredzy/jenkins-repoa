@@ -24,6 +24,9 @@ pipeline {
         stage('Initial Install') {
             steps {
                 sh './tools/jenkins/scripts/install.sh'
+                archiveArtifacts(
+                    artifacts: 'toto.date'
+                )
             }
         }
 
