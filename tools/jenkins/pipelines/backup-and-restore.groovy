@@ -24,13 +24,13 @@ pipeline {
                       'ol-7.6-x86_64', 'centos-7.latest-x86_64',
                       'ubuntu-16.04-x86_64', 'ubuntu-14.04-x86_64']
         )
-        booleanParam(name: 'BUNDLE', defaultvalue: false)
-        string(name: 'TOWERQA_BRANCH', defaultvalue: 'origin/devel')
-        string(name: 'DEPLOYMENT_NAME', defaultvalue: 'jenkins-tower-install')
-        booleanParam(name: 'VERBOSE', defaultvalue: false)
-        booleanParam(name: 'CLEAN_DEPLOYMENT_BEFORE_JOB_RUN', defaultvalue: true)
-        booleanParam(name: 'CLEAN_DEPLOYMENT_AFTER_JOB_RUN', defaultvalue: false)
-        booleanParam(name: 'CLEAN_DEPLOYMENT_ON_JOB_FAILURE', defaultvalue: true)
+        booleanParam(name: 'BUNDLE', defaultValue: false)
+        string(name: 'TOWERQA_BRANCH', defaultValue: 'origin/devel')
+        string(name: 'DEPLOYMENT_NAME', defaultValue: 'jenkins-tower-install')
+        booleanParam(name: 'VERBOSE', defaultValue: false)
+        booleanParam(name: 'CLEAN_DEPLOYMENT_BEFORE_JOB_RUN', defaultValue: true)
+        booleanParam(name: 'CLEAN_DEPLOYMENT_AFTER_JOB_RUN', defaultValue: false)
+        booleanParam(name: 'CLEAN_DEPLOYMENT_ON_JOB_FAILURE', defaultValue: true)
     }
 
     options {
