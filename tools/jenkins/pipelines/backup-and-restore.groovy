@@ -12,37 +12,73 @@ pipeline {
 
         stage('Initial Install') {
             steps {
-                echo "Initial Install"
+                script {
+                    stage('Initial Install') {
+                        standalone_install_build = build(
+                            job: 'QE/library/installtotot'
+                        )
+                    }
+                }
             }
         }
 
         stage('Load data') {
             steps {
-                echo "Loading data"
+                script {
+                    stage('Load data') {
+                        build(
+                            job: 'QE/library/load'
+                        )
+                    }
+                }
             }
         }
 
         stage('Backup Instance') {
             steps {
-                echo "Backup Instance"
+                script {
+                    stage('Backup Instance') {
+                        build(
+                            job: 'QE/library/backup'
+                        )
+                    }
+                }
             }
         }
 
         stage('Wipe and Reinstall Tower') {
             steps {
-                echo "Wipe and Reinstall Tower"
+                script {
+                    stage('Wipe and Reinstall Tower') {
+                        build(
+                            job: 'QE/library/instaltotot'
+                        )
+                    }
+                }
             }
         }
 
         stage('Restore backup') {
             steps {
-                echo "Restore backup"
+                script {
+                    stage('Restore backup') {
+                        build(
+                            job: 'QE/library/restore'
+                        )
+                    }
+                }
             }
         }
 
         stage('Verify data integrity') {
             steps {
-                echo "Verify data integrity"
+                script {
+                    stage('Verify data integrity') {
+                        build(
+                            job: 'QE/library/verify'
+                        )
+                    }
+                }
             }
         }
     }
